@@ -8,7 +8,7 @@ import java.util.*
 @Entity (tableName = "note_table")
 data class Note(
     @PrimaryKey
-    val timeCreated : Long = System.currentTimeMillis(),
+    val timeCreated : Long,
     var title : String,
     var content : String,
 //    @Ignore var dueDate : Date,
