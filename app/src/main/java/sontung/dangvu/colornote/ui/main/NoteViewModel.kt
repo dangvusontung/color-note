@@ -6,17 +6,25 @@ import androidx.lifecycle.LiveData
 import sontung.dangvu.colornote.database.Note
 import sontung.dangvu.colornote.database.NoteDao
 
-class ViewNoteViewModel(
-    private val dao : NoteDao,
+class NoteViewModel(
+    private val dao: NoteDao,
     val app: Application
 ) : AndroidViewModel(app) {
 
-    fun getAllNotes() : LiveData<List<Note>> {
+    fun getAllNotes(): LiveData<List<Note>> {
         return dao.getAllNotes()
     }
 
     suspend fun addNote(note: Note) {
         dao.insert(note)
+    }
+
+    suspend fun deleteNote(note: Note) {
+        dao.delete(note)
+    }
+
+    suspend fun updateNote(note: Note) {
+        dao.update(note)
     }
 
 }

@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import sontung.dangvu.colornote.database.NoteDao
-import java.lang.IllegalArgumentException
 
 class ViewNoteViewModelFactory(
     private  val dao : NoteDao,
@@ -12,8 +11,8 @@ class ViewNoteViewModelFactory(
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ViewNoteViewModel::class.java)) {
-            return ViewNoteViewModel(dao, application) as T
+        if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
+            return NoteViewModel(dao, application) as T
         }
 
         throw IllegalArgumentException("unknown view model")

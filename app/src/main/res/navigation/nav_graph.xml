@@ -9,7 +9,7 @@
         android:id="@+id/viewNoteFragment"
         android:name="sontung.dangvu.colornote.ui.main.ViewNoteFragment"
         android:label="fragment_view_note"
-        tools:layout="@layout/fragment_view_note" >
+        tools:layout="@layout/fragment_view_note">
         <action
             android:id="@+id/action_viewNoteFragment_to_noteDetailFragment"
             app:destination="@id/noteDetailFragment" />
@@ -18,5 +18,11 @@
         android:id="@+id/noteDetailFragment"
         android:name="sontung.dangvu.colornote.ui.detail.NoteDetailFragment"
         android:label="fragment_note_detail"
-        tools:layout="@layout/fragment_note_detail" />
+        tools:layout="@layout/fragment_note_detail">
+        <argument
+            android:name="editingNote"
+            android:defaultValue="@null"
+            app:argType="sontung.dangvu.colornote.database.Note"
+            app:nullable="true" />
+    </fragment>
 </navigation>
