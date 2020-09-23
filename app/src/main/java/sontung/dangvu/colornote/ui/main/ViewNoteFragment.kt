@@ -26,7 +26,6 @@ class ViewNoteFragment : Fragment() {
 
     private lateinit var btnAdd : FloatingActionButton
     private lateinit var viewModel : ViewNoteViewModel
-    private lateinit var notes : LiveData<List<Note>>
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var rcNotes : RecyclerView
 
@@ -39,8 +38,8 @@ class ViewNoteFragment : Fragment() {
 
         btnAdd = view.findViewById(R.id.add)
         btnAdd.setOnClickListener {
-//            findNavController().navigate(R.id.action_viewNoteFragment_to_noteDetailFragment)
-            addNote()
+            findNavController().navigate(R.id.action_viewNoteFragment_to_noteDetailFragment)
+//            addNote()
         }
 
         val application = requireNotNull(this.activity).application
@@ -53,24 +52,16 @@ class ViewNoteFragment : Fragment() {
 
         listNote.observe(this.viewLifecycleOwner, Observer {
             Log.d(TAG, "onCreateView: $it")
-            noteAdapter.setList(it)
+            noteAdapter.submitList(it)
         })
 
-        noteAdapter = NoteAdapter(ArrayList())
+        noteAdapter = NoteAdapter()
         rcNotes = view.findViewById(R.id.note_list)
         rcNotes.apply {
             adapter = noteAdapter
             layoutManager = LinearLayoutManager(activity)
         }
         return view
-    }
-
-    private fun addNote() {
-        GlobalScope.launch {
-            for (i in 1..10) {
-                viewModel.addNote(Note(System.currentTimeMillis(), "$i", "content $i"))
-            }
-        }
     }
 
 }
