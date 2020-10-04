@@ -33,7 +33,7 @@ class ViewNoteFragment : Fragment() {
 
         btnAdd = view.findViewById(R.id.add)
         btnAdd.setOnClickListener {
-            moveToDetailFragment(null)
+            moveToDetailFragment(Note("", ""), true)
         }
 
         val application = requireNotNull(this.activity).application
@@ -64,9 +64,15 @@ class ViewNoteFragment : Fragment() {
         }
     }
 
-    private fun moveToDetailFragment(note: Note?) {
-        val action = ViewNoteFragmentDirections.actionViewNoteFragmentToNoteDetailFragment(note)
+    private fun moveToDetailFragment(note: Note, isNewNote: Boolean) {
+        val action =
+            ViewNoteFragmentDirections.actionViewNoteFragmentToNoteDetailFragment(note, isNewNote)
         findNavController().navigate(action)
     }
+
+    private fun moveToDetailFragment(note: Note) {
+        moveToDetailFragment(note, false)
+    }
+
 
 }

@@ -4,19 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface NoteDao {
+abstract class NoteDao {
 
     @Insert
-    suspend fun insert(note: Note)
+    abstract suspend fun insert(note: Note)
 
     @Update
-    suspend fun update(note: Note)
+    abstract suspend fun update(note: Note)
 
     @Delete
-    suspend fun delete(note: Note)
+    abstract suspend fun delete(note: Note)
 
-    @Query ("SELECT * FROM note_table")
-    fun getAllNotes() : LiveData<List<Note>>
+    @Query("SELECT * FROM note_table")
+    abstract fun getAllNotes(): LiveData<List<Note>>
 
+    @Query("SELECT * FROM note_table WHERE timeCreated = :timeCreated")
+    abstract fun getNoteByTime(timeCreated: Long): Note
 
 }

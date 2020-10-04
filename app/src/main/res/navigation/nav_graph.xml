@@ -24,5 +24,10 @@
             android:defaultValue="@null"
             app:argType="sontung.dangvu.colornote.database.Note"
             app:nullable="true" />
+        <argument
+            android:name="isNewNote"
+            android:defaultValue="true"
+            app:argType="boolean" />
+
     </fragment>
 </navigation>
